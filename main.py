@@ -4,9 +4,9 @@ from telegram.ext import Updater
 def main():
     # Call the logs function to start logging.
     functions.logs()
-
     # Create the Updater and pass the bot token.
-    updater = Updater(token="441970404:AAGvKFn4txXvwROpA0Eg8JjeXyAxvaq8njQ")
+    TOKEN=""
+    updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
 
     # Call the function that contains the handlers for the commands.
