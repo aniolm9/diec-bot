@@ -5,7 +5,7 @@ Bot de Telegram que permet fer consultes inline al DIEC.
 
 ## Paquets
 ```
-$ sudo apt install python3 python3-pip python3-setuptools build-essential python3-venv
+$ sudo apt install python3 python3-pip python3-setuptools python3-venv build-essential libgnutls-openssl27 libgnutls30 libcurl3-gnutls
 ```
 
 ## Entorn virtual
