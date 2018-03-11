@@ -12,7 +12,7 @@ def open_web(url):
     tls.fix_tls()  # Fix the cert error for DIEC website.
 
     u = urllib.request.urlopen(url)
-    web = u.read().decode("Latin1")
+    web = u.read().decode("latin-1")
     u.close()
 
     return web

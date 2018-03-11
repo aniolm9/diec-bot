@@ -13,7 +13,8 @@ $ sudo apt install python3 python3-pip python3-setuptools build-essential python
 $ BOT="" # Directori del bot.
 $ python3 -m venv $BOT
 $ source $BOT/bin/activate
-$ pip3 install python-telegram-bot
+$ pip3 install python-telegram-bot --upgrade
+$ pip3 install markdownify --upgrade
 ````
 
 ## Clonar repositori

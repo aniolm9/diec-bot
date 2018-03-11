@@ -1,6 +1,6 @@
 import link
-from telegram import InlineQueryResultArticle, InputTextMessageContent
-
+from markdownify import markdownify as md
+from telegram import InlineQueryResultArticle, InputTextMessageContent, ParseMode
 
 # Searches for javascript:getAccepcio and substracts 1.
 def get_meanings(url):
@@ -35,14 +35,28 @@ def get_defs_urls(id_list, word):
 
 def get_definition(defi_url):
     definition_title = []
-    web = link.open_web(defi_url)
 
+    # Open the web and convert the HTML to MakDown.
+    web = link.open_web(defi_url).encode("latin-1").decode("utf-8") # Something weird happens with the encoding.
+    content = md(web, strip=["a"])
+
+    # Get the word
+    pos = content.find(".gif)") + 11
+    content = content[pos:]
+    content_list = content.split("\n")
+    title = content_list[0]
+
+    # There's too much space between the word and the definition. I delete one \n.
+    del content_list[2]
+    definition = "\n".join(content_list)
+
+    # Add the word and the definition to a list.
     definition_title.append(title)
     definition_title.append(definition)
 
     return definition_title
 
-def generate_results(word, meanings, defs_urls):
+def generate_results(meanings, defs_urls):
     results = []
     if meanings <= 0:
         results.append(InlineQueryResultArticle(
@@ -56,7 +70,7 @@ def generate_results(word, meanings, defs_urls):
             results.append(InlineQueryResultArticle(
                 id=cont,
                 title=output[0],
-                input_message_content=InputTextMessageContent(output[1])))
+                input_message_content=InputTextMessageContent(output[1], parse_mode=ParseMode.MARKDOWN)))
             cont += cont
 
     return results

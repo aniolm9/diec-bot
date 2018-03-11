@@ -17,7 +17,7 @@ def inlinequery(bot, update):
     id_list = paraules.get_ids(url, meanings)
     defs_urls = paraules.get_defs_urls(id_list, query)
 
-    results = paraules.generate_results(query, meanings, defs_urls)
+    results = paraules.generate_results(meanings, defs_urls)
 
     #print (results[0])
     update.inline_query.answer(results)
