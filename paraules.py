@@ -60,15 +60,20 @@ def generate_results(meanings, defs_urls):
     if meanings <= 0:
         results.append(InlineQueryResultArticle(
             id=0,
-            title="No s'han trobat resultats.",
-            input_message_content=InputTextMessageContent("No s'han trobat resultats.")))
+            title="DIEC",
+            description="Enllaç a la web del DIEC.",
+            thumb_url="https://imatges.vilaweb.cat/catalunyanord/wp-content/uploads/2015/09/logo-iec-300x270.jpg",
+            input_message_content=InputTextMessageContent('<a href="https://dlc.iec.cat">Accedeix al DIEC</a>', parse_mode='HTML')))
     else:
         cont = 1
         for defi_url in defs_urls:
             output = get_definition(defi_url)
+            inici_def = output[1].find("----")
             results.append(InlineQueryResultArticle(
                 id=cont,
                 title=output[0],
+                description=output[1][inici_def + 10:],
+                thumb_url="https://imatges.vilaweb.cat/catalunyanord/wp-content/uploads/2015/09/logo-iec-300x270.jpg",
                 input_message_content=InputTextMessageContent(output[1], parse_mode=ParseMode.MARKDOWN)))
             cont += cont
 
