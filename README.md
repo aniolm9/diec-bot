@@ -23,7 +23,7 @@ cd $BOT && git clone https://github.com/xaldiks/diec-bot.git
 ```
 
 ## Canviar Token
-El token es troba al fitxer **main.py**.
+Cal crear un fitxer __TOKEN__ amb una sola línia que sigui el Token.
 
 ## Executar
 ```
