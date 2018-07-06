@@ -7,7 +7,7 @@ def main():
 
     # Create the Updater and pass the bot token.
     f = open("TOKEN", "r")
-    TOKEN=f.readline()
+    TOKEN=f.readline().rstrip()
     f.close()
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
