@@ -6,7 +6,7 @@ def main():
     functions.logs()
 
     # Create the Updater and pass the bot token.
-    TOKEN=""
+    TOKEN=open("TOKEN", "r").readline()
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
 
