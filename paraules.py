@@ -5,8 +5,7 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent, ParseMod
 # Searches for javascript:getAccepcio and substracts 1.
 def get_meanings(url):
     web = link.open_web(url)
-    meanings = web.count("javascript:getAccepcio") - 1
-
+    meanings = web.count("javascript:getAccepcio")
     return meanings
 
 def get_ids(url, meanings):
@@ -25,10 +24,10 @@ def get_ids(url, meanings):
 
     return id_list
 
-def get_defs_urls(id_list, word):
+def get_defs_urls(id_list):
     defs_urls = []
     for id in id_list:
-        definition = "https://dlc.iec.cat/accepcio.asp?Word=" + id + "&Id=" + id
+        definition = "http://mdlc.iec.cat/accepcio.asp?Word=" + id + "&Id=" + id
         defs_urls.append(definition)
 
     return defs_urls
@@ -41,7 +40,7 @@ def get_definition(defi_url):
     content = md(web, strip=["a"])
 
     # Get the word
-    pos = content.find(".gif)") + 11
+    pos = content.find('"UTF-8"?') + 8
     content = content[pos:]
     content_list = content.split("\n")
     title = content_list[0]

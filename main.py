@@ -13,5 +13,5 @@ def main():
     # Call the function that contains the handlers for the commands.
     functions.handlers(updater, dispatcher)
 
-# Rock it baby
+# Rock it
 main()
