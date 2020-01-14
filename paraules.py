@@ -66,7 +66,7 @@ def generate_results(meanings, defs_urls):
             results.append(InlineQueryResultArticle(
                 id=cont,
                 title=output[:inici_def],
-                description=output[inici_def+9:],
+                description=output[inici_def+8:],
                 thumb_url="https://imatges.vilaweb.cat/catalunyanord/wp-content/uploads/2015/09/logo-iec-300x270.jpg",
                 input_message_content=InputTextMessageContent(output, parse_mode=ParseMode.MARKDOWN)))
             cont += cont
