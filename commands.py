@@ -2,13 +2,13 @@ import paraules
 import link
 from time import sleep
 
-def start(bot, update):
-    bot.send_message(chat_id=update.message.chat_id, text="Gràcies per iniciar-me! Si no saps com funciono pots utilitzar l'ordre /ajuda")
+def start(update, context):
+    context.bot.send_message(chat_id=update.message.chat_id, text="Gràcies per iniciar-me! Si no saps com funciono pots utilitzar l'ordre /ajuda")
 
-def ajuda(bot, update):
-    bot.send_message(chat_id=update.message.chat_id, text="Només cal que escriguis @diec_bot en qualsevol xat seguit de la paraula que vols cercar.")
+def ajuda(update, context):
+    context.bot.send_message(chat_id=update.message.chat_id, text="Només cal que escriguis @diec_bot en qualsevol xat seguit de la paraula que vols cercar.")
 
-def inlinequery(bot, update):
+def inlinequery(update, context):
     # Handle the inline query.
     query = update.inline_query.query
 

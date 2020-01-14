@@ -29,6 +29,6 @@ def handlers(updater, dispatcher):
     updater.idle()
 
 
-def error(bot, update, error):
+def error(update, context):
     logger = logs()
-    logger.warning('Update "%s" caused error "%s"', update, error)
+    logger.warning('Update "%s" caused error "%s"', update, context.error)

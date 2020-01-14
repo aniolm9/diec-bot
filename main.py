@@ -9,11 +9,10 @@ def main():
     f = open("TOKEN", "r")
     TOKEN=f.readline().rstrip()
     f.close()
-    updater = Updater(token=TOKEN)
+    updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
     # Call the function that contains the handlers for the commands.
     functions.handlers(updater, dispatcher)
 
-# Rock it
 main()
