@@ -8,7 +8,6 @@ def start(bot, update):
 def ajuda(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Només cal que escriguis @diec_bot en qualsevol xat seguit de la paraula que vols cercar.")
 
-
 def inlinequery(bot, update):
     # Handle the inline query.
     query = update.inline_query.query

@@ -3,7 +3,7 @@ import urllib.request
 
 def generate_url(word):
     word = urllib.parse.quote_plus(word.lower(), encoding="Windows-1252")
-    url = "http://mdlc.iec.cat/results.asp?txtEntrada=" + word + "&operEntrada=0"
+    url = "https://dlc.iec.cat/Results?EntradaText=" + word + "&OperEntrada=0"
 
     return url
 

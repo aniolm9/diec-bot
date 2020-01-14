@@ -5,7 +5,7 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent, ParseMod
 # Searches for javascript:getAccepcio and substracts 1.
 def get_meanings(url):
     web = link.open_web(url)
-    meanings = web.count("javascript:getAccepcio")
+    meanings = web.count('onclick="GetDefinition(')
     return meanings
 
 def get_ids(url, meanings):
@@ -27,7 +27,7 @@ def get_ids(url, meanings):
 def get_defs_urls(id_list):
     defs_urls = []
     for id in id_list:
-        definition = "http://mdlc.iec.cat/accepcio.asp?Word=" + id + "&Id=" + id
+        definition = "https://dlc.iec.cat/Results/PrintAccepcio?id=" + id
         defs_urls.append(definition)
 
     return defs_urls
@@ -39,21 +39,15 @@ def get_definition(defi_url):
     web = link.open_web(defi_url).encode("latin-1").decode("utf-8") # Something weird happens with the encoding.
     content = md(web, strip=["a"])
 
-    # Get the word
-    pos = content.find('"UTF-8"?') + 8
-    content = content[pos:]
-    content_list = content.split("\n")
-    title = content_list[0]
+    # Cut the start and end of the definition
+    content = content[content.find("LOGO_IEC.png")+19:content.rfind("Institut d'Estudis Catalans")]
 
     # There's too much space between the word and the definition. I delete one \n.
+    content_list = content.split('\n')
     del content_list[2]
     definition = "\n".join(content_list)
 
-    # Add the word and the definition to a list.
-    definition_title.append(title)
-    definition_title.append(definition)
-
-    return definition_title
+    return definition
 
 def generate_results(meanings, defs_urls):
     results = []
@@ -68,13 +62,13 @@ def generate_results(meanings, defs_urls):
         cont = 1
         for defi_url in defs_urls:
             output = get_definition(defi_url)
-            inici_def = output[1].find("----")
+            inici_def = output.find("----")
             results.append(InlineQueryResultArticle(
                 id=cont,
-                title=output[0],
-                description=output[1][inici_def + 9:],
+                title=output[:inici_def],
+                description=output[inici_def+9:],
                 thumb_url="https://imatges.vilaweb.cat/catalunyanord/wp-content/uploads/2015/09/logo-iec-300x270.jpg",
-                input_message_content=InputTextMessageContent(output[1], parse_mode=ParseMode.MARKDOWN)))
+                input_message_content=InputTextMessageContent(output, parse_mode=ParseMode.MARKDOWN)))
             cont += cont
 
     return results
