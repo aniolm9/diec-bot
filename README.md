@@ -19,7 +19,7 @@ pip3 install markdownify --upgrade
 
 ## Clonar repositori
 ```
-cd $BOT && git clone https://github.com/xaldiks/diec-bot.git
+cd $BOT && git clone https://github.com/aniolm9/diec-bot.git
 ```
 
 ## Canviar Token
